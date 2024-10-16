@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cocktail Recipe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Titan+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1>Fancy a nice cocktail Recipe?</h1>
+    <% if (locals.cocktail) { %>
+
+    <div class="container">
+      <div class="display-div">
+        <img
+          src="<%= cocktail.strDrinkThumb %>"
+          alt="<%= cocktail.strDrink %>"
+        />
+        <div>
+          <h1>Name: <%= cocktail.strDrink %></h1>
+          <p>Category: <%= cocktail.strCategory %></p>
+          <p>Alcoholic or Not: <%= cocktail.strAlcoholic %></p>
+          <p>Serving Glass:<%= cocktail.strGlass %></p>
+        </div>
+      </div>
+
+      <div class="display-div two">
+        <h2>Instructions</h2>
+        <p><%= cocktail.strInstructions %></p>
+        <h2>Ingredients</h2>
+        <ul>
+          <% for (let i = 1; i <= 15; i++) { %> <% if
+          (cocktail[`strIngredient${i}`]) { %>
+          <li>
+            <%= cocktail[`strIngredient${i}`] %> : <%=
+            cocktail[`strMeasure${i}`] || '' %>
+          </li>
+          <% } %> <% } %>
+        </ul>
+        <% } else { %>
+        <h1>No cocktail found</h1>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
